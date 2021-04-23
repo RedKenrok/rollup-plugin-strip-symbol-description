@@ -4,31 +4,6 @@ import { createFilter } from '@rollup/pluginutils'
 
 const whitespace = /\s/
 
-function flatten (node) {
-  const parts = []
-
-  while (node.type === 'MemberExpression') {
-    if (!node.computed) {
-      parts.unshift(node.property.name)
-      node = node.object
-    }
-  }
-
-  let name
-  if (node.type === 'Identifier') {
-    name = node.name
-  } else if (node.type === 'ThisExpression') {
-    name = 'this'
-  } else if (node.type === 'Super') {
-    name = 'super'
-  } else {
-    return null
-  }
-
-  parts.unshift(name)
-  return parts.join('.')
-}
-
 export default function (options = {}) {
   // Overwrite default options and deconstruct them.
   const {
@@ -97,16 +72,17 @@ export default function (options = {}) {
             magicString.addSourcemapLocation(node.end)
           }
 
-          if (node.type !== 'CallExpression') {
+          // Check if symbol call.
+          if (node.type !== 'CallExpression' || !node.callee || node.callee.name !== 'Symbol') {
             return
           }
-          let name = flatten(node.callee)
-          if (name !== 'Symbol') {
-            return
-          }
+
+          // Remove contents.
           for (const argument of node.arguments) {
             removeStatement(argument)
           }
+
+          // Node is done so we skip!
           this.skip();
         },
       })
