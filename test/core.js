@@ -1,17 +1,17 @@
-// Import node modules.
-import fs from 'fs';
-import path from 'path';
+// const node modules.
+const fs = require('fs');
+const path = require('path');
 
-// Import parser and test suite.
-import { Parser } from 'acorn'
-import ava from 'ava'
+// const parser and test suite.
+const { Parser } = require('acorn')
+const ava = require('ava')
 
-// Import library.
-import stripSymbolDescription from '../src/index.js'
+// const library.
+const stripSymbolDescription = require('..')
 
-const directoryPath = path.dirname(import.meta.url).substring(7)
-const directoryPathInput = path.join(directoryPath, 'input')
-const directoryPathOutput = path.join(directoryPath, 'output')
+const directoryPath = path.resolve(path.dirname(__dirname), 'test')
+const directoryPathInput = path.resolve(directoryPath, 'input')
+const directoryPathOutput = path.resolve(directoryPath, 'output')
 // Get files in input directory.
 fs.readdir(directoryPathInput, function (error, files) {
   if (error) {
