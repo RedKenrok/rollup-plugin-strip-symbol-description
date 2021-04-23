@@ -1,0 +1,40 @@
+{
+  "name": "rollup-plugin-strip-symbol-description",
+  "description": "Remove the descriptions of symbols.",
+  "keywords": [
+    "rollup",
+    "plugin",
+    "strip",
+    "symbol",
+    "description"
+  ],
+  "type": "module",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "src/index.json",
+  "license": "MIT",
+  "files": [
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "ava test/test.js"
+  },
+  "peerDependencies": {
+    "rollup": "^2.0.0"
+  },
+  "dependencies": {
+    "@rollup/pluginutils": "^4.1.0",
+    "estree-walker": "^3.0.0",
+    "magic-string": "^0.25.0"
+  },
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "acorn": "^8.1.0",
+    "@babel/core": "^7.13.0",
+    "@babel/preset-env": "^7.13.0"
+  }
+}

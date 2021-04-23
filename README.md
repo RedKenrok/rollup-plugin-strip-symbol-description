@@ -1,2 +1,3 @@
 # rollup-plugin-strip-symbol-description
-Rollup plugin that removes the descriptions of symbols.
+
+A rollup plugin to remove the descriptions of `Symbol`s.
