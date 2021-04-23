@@ -107,6 +107,7 @@ export default function (options = {}) {
           for (const argument of node.arguments) {
             removeStatement(argument)
           }
+          this.skip();
         },
       })
 

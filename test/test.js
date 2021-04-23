@@ -12,11 +12,13 @@ import stripSymbolDescription from '../src/index.js'
 const directoryPath = path.dirname(import.meta.url).substring(7)
 const directoryPathInput = path.join(directoryPath, 'input')
 const directoryPathOutput = path.join(directoryPath, 'output')
+// Get files in input directory.
 fs.readdir(directoryPathInput, function (error, files) {
   if (error) {
     throw error
   }
 
+  // Test each file.
   files.forEach(function (fileName) {
     if (!fileName.endsWith('.js')) {
       return
@@ -39,7 +41,11 @@ fs.readdir(directoryPathInput, function (error, files) {
           input,
           fileName
         )
-      console.log(input, output)
+
+      if (!output) {
+        test.fail('No output given')
+        return
+      }
       test.is(output.code, outputExpected)
     })
   });

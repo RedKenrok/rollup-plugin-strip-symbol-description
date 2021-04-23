@@ -1,1 +1,1 @@
-export const symbol = new Symbol('description')
+export const symbol = Symbol('description')
