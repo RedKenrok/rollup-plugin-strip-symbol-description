@@ -12,15 +12,15 @@
     "symbol",
     "description"
   ],
-  "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "main": "src/index.js",
+  "main": "dst/index.js",
+  "module": "dst/index.esm.js",
   "files": [
-    "src",
+    "dst",
     "LICENSE",
     "README.md"
   ],
@@ -31,19 +31,22 @@
   },
   "bugs": "https://github.com/redkenrok/rollup-plugin-strip-symbol-description/issues",
   "scripts": {
-    "test": "ava test/core.js"
+    "build": "rollup -c",
+    "develop": "rollup -c -w",
+    "test": "yarn run build && ava test/core.js"
   },
   "peerDependencies": {
     "rollup": "^2.0.0"
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.0",
-    "estree-walker": "^3.0.0",
+    "estree-walker": "^2.0.0",
     "magic-string": "^0.25.0"
   },
   "devDependencies": {
-    "eslint": "^7.24.0",
     "acorn": "^8.1.0",
-    "ava": "^3.15.0"
+    "ava": "^3.15.0",
+    "eslint": "^7.24.0",
+    "rollup": "^2.45.0"
   }
 }
